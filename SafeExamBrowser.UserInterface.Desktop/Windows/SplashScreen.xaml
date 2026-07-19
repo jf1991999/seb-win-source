@@ -1,0 +1,33 @@
+<Window x:Class="SafeExamBrowser.UserInterface.Desktop.Windows.SplashScreen" x:ClassModifier="internal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SafeExamBrowser.UserInterface.Desktop"
+        mc:Ignorable="d"
+        Title="Blinkered" Background="#F6F2EA" Height="215" Width="360" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        Cursor="Wait" Icon="../Images/SafeExamBrowser.ico" ResizeMode="NoResize" Topmost="True">
+    <!-- Blinkered launch splash. Blinkered palette (indigo #4F46E5 accents on the warm ground the mascot sits on);
+         the horse mascot (transparent PNG) + a "Blinkered" wordmark + version. Deliberately NO ETH/SEB attribution
+         (the AssemblyCopyright keeps the MPL "based on Safe Exam Browser" credit; the splash does not show it). -->
+    <Border BorderBrush="#4F46E5" BorderThickness="2">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Source="pack://application:,,,/SafeExamBrowser.UserInterface.Desktop;component/Images/SplashScreen.png"
+                   Stretch="Uniform" Margin="8,10,8,0" />
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,2,0,4">
+                <TextBlock Text="Blinkered" FontFamily="Segoe UI" FontWeight="SemiBold" FontSize="16" Foreground="#312E81" />
+                <TextBlock x:Name="VersionTextBlock" FontFamily="Segoe UI" FontSize="11" Foreground="#6B7280" Margin="8,6,0,0" VerticalAlignment="Center" />
+            </StackPanel>
+            <TextBlock Grid.Row="2" x:Name="StatusTextBlock" Text="{Binding Path=Status}" FontFamily="Segoe UI" FontSize="11" Foreground="#4B4B63"
+                       HorizontalAlignment="Center" Margin="0,0,0,5" />
+            <ProgressBar Grid.Row="3" x:Name="ProgressBar" Height="6" Minimum="0" Maximum="{Binding Path=MaxProgress}" Value="{Binding Path=CurrentProgress}"
+                         IsIndeterminate="{Binding Path=IsIndeterminate}" Foreground="#4F46E5" Background="#E7E1D3" BorderThickness="0" Margin="12,0,12,10" />
+        </Grid>
+    </Border>
+</Window>

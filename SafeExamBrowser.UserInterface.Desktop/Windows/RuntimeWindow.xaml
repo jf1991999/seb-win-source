@@ -1,0 +1,53 @@
+﻿<Window x:Class="SafeExamBrowser.UserInterface.Desktop.Windows.RuntimeWindow" x:ClassModifier="internal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SafeExamBrowser.UserInterface.Desktop"
+        xmlns:s="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d" Background="#F6F2EA" Foreground="#1E1B4B" Height="500" Width="850" WindowStyle="None" WindowStartupLocation="Manual"
+        Left="-32000" Top="-32000" ShowInTaskbar="False"
+        Icon="../Images/SafeExamBrowser.ico" ResizeMode="NoResize" Title="Blinkered" Topmost="True">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Templates/ScrollViewers.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!-- Blinkered launch (session-start) window. Same palette as the splash (indigo #4F46E5 on the warm ground the
+         mascot sits on); NO ETH/SEB attribution (kept in AssemblyCopyright for MPL, not rendered here). -->
+    <Grid>
+        <Border BorderBrush="#4F46E5" BorderThickness="2">
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="3*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="400" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Grid.ColumnSpan="2" Margin="-25,0,0,0" Source="pack://application:,,,/SafeExamBrowser.UserInterface.Desktop;component/Images/SplashScreen.png" />
+                    <StackPanel Grid.Column="1" Margin="10,60,20,10" VerticalAlignment="Top">
+                        <TextBlock Text="Blinkered" FontFamily="Segoe UI" FontWeight="SemiBold" FontSize="18" Foreground="#312E81" />
+                        <TextBlock x:Name="InfoTextBlock" FontSize="11" Foreground="#6B7280" TextWrapping="Wrap" Margin="0,4,0,0" />
+                    </StackPanel>
+                </Grid>
+                <ProgressBar x:Name="ProgressBar" Grid.Row="1" Background="#E7E1D3" BorderThickness="0" Foreground="#4F46E5"
+                             IsIndeterminate="{Binding IsIndeterminate}" Maximum="{Binding MaxProgress}" Value="{Binding CurrentProgress}"
+                             Visibility="{Binding ProgressBarVisibility}" />
+                <TextBlock x:Name="StatusTextBlock" Grid.Row="1" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" Foreground="#1E1B4B"
+                           Text="{Binding Status}" VerticalAlignment="Center" />
+                <Border Grid.Row="2" BorderBrush="#C7C0D8" BorderThickness="0,0.5,0,0">
+                    <ScrollViewer x:Name="LogScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="0,10,0,0"
+                                  Template="{StaticResource SmallBarScrollViewer}" Visibility="Collapsed">
+                        <TextBlock x:Name="LogTextBlock" Background="Transparent" FontFamily="Consolas" FontSize="10" />
+                    </ScrollViewer>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
